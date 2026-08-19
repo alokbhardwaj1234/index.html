@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Logistics Pro | Customer Portal</title>
+<meta name="description" content="AR Logistics customer shipment booking, tracking and management portal">
+
+<style>
+:root{
+  --primary:#ff6b00;
+  --primary-dark:#e85d00;
+  --dark:#101828;
+  --dark2:#0b1220;
+  --bg:#f4f6f8;
+  --white:#fff;
+  --text:#344054;
+  --muted:#667085;
+  --line:#e4e7ec;
+  --green:#12b76a;
+  --blue:#2e90fa;
+  --yellow:#f79009;
+  --red:#f04438;
+  --purple:#7f56d9;
+  --shadow:0 12px 35px rgba(16,24,40,.09);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.container{width:min(1250px,92%);margin:auto}
+.hidden{display:none!important}
+
+/* TOP */
+.topbar{
+  background:var(--dark2);
+  color:#fff;
+  padding:8px 0;
+  font-size:13px
+}
+.topbar .container{
+  display:flex;
+  justify-content:space-between;
+  gap:20px
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:1000
+}
+.navbar{
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:23px;
+  font-weight:900;
+  color:var(--dark)
+}
+.logo-icon{
+  width:43px;
+  height:43px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:var(--primary);
+  color:#fff;
+  font-size:15px
+}
+.logo span{color:var(--primary)}
+nav{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  font-weight:700
+}
+nav a:hover{color:var(--primary)}
+.menu{
+  display:none;
+  background:none;
+  border:0;
+  font-size:28px
+}
+.login-btn,.logout-btn{
+  padding:9px 14px;
+  border-radius:8px;
+  font-weight:700
+}
+.login-btn{
+  background:#fff;
+  color:var(--primary);
+  border:1px solid var(--primary)
+}
+.logout-btn{
+  background:var(--dark);
+  color:#fff;
+  border:0
+}
+
+/* HERO */
+.hero{
+  min-height:610px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+  background:
+  linear-gradient(90deg,rgba(5,15,28,.95),rgba(5,15,28,.65)),
+  url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=85")
+  center/cover
+}
+.hero-content{max-width:780px}
+.badge{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:40px;
+  background:rgba(255,107,0,.15);
+  border:1px solid rgba(255,107,0,.45);
+  color:#ff9b5b;
+  font-weight:800;
+  margin-bottom:18px
+}
+.hero h1{
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.03;
+  margin-bottom:18px
+}
+.hero h1 span{color:var(--primary)}
+.hero p{
+  max-width:720px;
+  color:#d0d5dd;
+  font-size:19px;
+  margin-bottom:26px
+}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px
+}
+.primary{background:var(--primary);color:#fff}
+.primary:hover{background:var(--primary-dark)}
+.light{background:#fff;color:var(--dark)}
+.dark-btn{background:var(--dark);color:#fff}
+.outline{background:#fff;border:1px solid var(--line);color:var(--text)}
+
+/* STATS */
+.stats{margin-top:-45px;position:relative;z-index:5}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:#fff;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden
+}
+.stat{
+  text-align:center;
+  padding:20px 10px;
+  border-right:1px solid var(--line)
+}
+.stat:last-child{border:0}
+.stat strong{
+  display:block;
+  font-size:27px;
+  color:var(--primary)
+}
+
+/* SECTIONS */
+section{padding:78px 0}
+.section-title{
+  text-align:center;
+  max-width:750px;
+  margin:0 auto 38px
+}
+.eyebrow{
+  color:var(--primary);
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.5px
+}
+.section-title h2{
+  color:var(--dark);
+  font-size:40px;
+  line-height:1.15;
+  margin:7px 0 12px
+}
+.section-title p{color:var(--muted)}
+
+/* SERVICES */
+.services{background:#fff}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px
+}
+.service{
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:25px
+}
+.service-icon{font-size:30px;margin-bottom:8px}
+.service h3{color:var(--dark);margin-bottom:6px}
+.service p{color:var(--muted)}
+
+/* APP */
+.app-section{background:var(--bg)}
+.app-grid{
+  display:grid;
+  grid-template-columns:230px 1fr;
+  gap:20px
+}
+.panel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
+  box-shadow:var(--shadow)
+}
+.user-card{
+  background:linear-gradient(135deg,#101828,#1d2939);
+  color:#fff;
+  padding:17px;
+  border-radius:13px;
+  margin-bottom:15px
+}
+.avatar{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--primary);
+  font-weight:900;
+  margin-bottom:10px
+}
+.side-menu button{
+  display:block;
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:11px;
+  border-radius:8px;
+  margin:3px 0;
+  font-weight:700;
+  color:var(--text)
+}
+.side-menu button:hover,
+.side-menu button.active{
+  color:var(--primary);
+  background:#fff1e8
+}
+.dashboard-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px
+}
+.dashboard-head h2{color:var(--dark)}
+.dashboard-head p{color:var(--muted)}
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:11px;
+  margin-bottom:20px
+}
+.mini{
+  border:1px solid var(--line);
+  background:var(--bg);
+  padding:14px;
+  border-radius:11px
+}
+.mini small{color:var(--muted)}
+.mini b{
+  display:block;
+  font-size:23px;
+  color:var(--dark)
+}
+
+/* TABLE */
+.table-wrap{overflow:auto}
+.orders{
+  width:100%;
+  min-width:850px;
+  border-collapse:collapse
+}
+.orders th,.orders td{
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-size:13px
+}
+.orders th{
+  color:var(--dark);
+  background:#f9fafb
+}
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:800
+}
+.s-booked{background:#eff8ff;color:var(--blue)}
+.s-pickup{background:#f4f3ff;color:var(--purple)}
+.s-warehouse{background:#fff7ed;color:var(--yellow)}
+.s-transit{background:#fff4ed;color:var(--primary)}
+.s-out{background:#f0fdf4;color:var(--green)}
+.s-delivered{background:#ecfdf3;color:var(--green)}
+.s-cancelled{background:#fef3f2;color:var(--red)}
+.s-return{background:#fff1f3;color:var(--red)}
+
+/* FORM */
+.booking{background:#fff}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px
+}
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px
+}
+.field.full{grid-column:1/-1}
+.field label{
+  color:var(--dark);
+  font-weight:800;
+  font-size:14px
+}
+.field input,
+.field select,
+.field textarea{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  outline:none;
+  background:#fff
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--primary)
+}
+.field textarea{
+  min-height:100px;
+  resize:vertical
+}
+.form-section-title{
+  grid-column:1/-1;
+  color:var(--dark);
+  border-bottom:1px solid var(--line);
+  padding-bottom:8px;
+  margin-top:8px
+}
+
+/* PRICE */
+.quote-box{
+  background:#101828;
+  color:#fff;
+  border-radius:14px;
+  padding:20px;
+  margin-top:20px
+}
+.quote-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px
+}
+.quote-item{
+  background:rgba(255,255,255,.06);
+  border-radius:9px;
+  padding:12px
+}
+.quote-item small{color:#98a2b3}
+.quote-item strong{
+  display:block;
+  font-size:20px
+}
+
+/* TRACK */
+.tracking{
+  background:linear-gradient(135deg,#101828,#1d2939);
+  color:#fff
+}
+.tracking .section-title h2{color:#fff}
+.tracking .section-title p{color:#d0d5dd}
+.track-box{
+  max-width:800px;
+  margin:auto;
+  background:#fff;
+  padding:25px;
+  border-radius:15px
+}
+.track-row{display:flex;gap:9px}
+.track-row input{
+  flex:1;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:8px
+}
+.track-result{
+  display:none;
+  color:var(--dark);
+  background:#f2f4f7;
+  padding:18px;
+  border-radius:10px;
+  margin-top:15px
+}
+.timeline{margin-top:20px}
+.timeline-item{
+  display:flex;
+  gap:13px;
+  margin-bottom:17px
+}
+.dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--line);
+  margin-top:5px;
+  flex-shrink:0
+}
+.dot.active{background:var(--green)}
+.timeline-item strong{color:var(--dark)}
+.timeline-item small{display:block;color:var(--muted)}
+
+/* EXTRA CARDS */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px
+}
+.feature-card{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:21px;
+  border-radius:13px
+}
+.feature-card h3{color:var(--dark);margin-bottom:6px}
+.feature-card p{color:var(--muted)}
+
+/* PROFILE / SUPPORT */
+.two-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px
+}
+.address-list,.notification-list{
+  display:grid;
+  gap:10px
+}
+.address,.notification{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:13px;
+  background:#fafafa
+}
+.address strong,.notification strong{
+  color:var(--dark)
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:rgba(11,18,32,.76);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px
+}
+.modal.show{display:flex}
+.modal-box{
+  width:min(500px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:18px;
+  padding:28px;
+  position:relative;
+  box-shadow:0 25px 80px rgba(0,0,0,.25)
+}
+.modal-box h2{color:var(--dark);margin-bottom:5px}
+.modal-box>p{color:var(--muted);margin-bottom:18px}
+.close{
+  position:absolute;
+  right:14px;
+  top:8px;
+  border:0;
+  background:none;
+  font-size:29px
+}
+.demo{
+  background:#f9fafb;
+  padding:10px;
+  border-radius:8px;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:15px
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:5000;
+  background:var(--dark);
+  color:#fff;
+  padding:13px 18px;
+  border-radius:9px;
+  display:none;
+  box-shadow:var(--shadow)
+}
+.toast.show{display:block}
+
+/* FOOTER */
+footer{
+  background:var(--dark2);
+  color:#98a2b3;
+  padding:55px 0 20px
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+  gap:35px;
+  margin-bottom:35px
+}
+footer h3{color:#fff;margin-bottom:12px}
+.footer-links{list-style:none}
+.footer-links li{margin:8px 0}
+.copyright{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:17px;
+  text-align:center;
+  font-size:13px
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  nav{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:74px;
+    background:#fff;
+    flex-direction:column;
+    padding:20px;
+    border-bottom:1px solid var(--line)
+  }
+  nav.open{display:flex}
+  .menu{display:block}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .app-grid{grid-template-columns:1fr}
+  .mini-grid{grid-template-columns:repeat(3,1fr)}
+  .service-grid,.feature-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .topbar .right{display:none}
+  .hero{min-height:560px}
+  .stats-grid,
+  .service-grid,
+  .feature-grid,
+  .mini-grid,
+  .form-grid,
+  .two-grid,
+  .quote-grid{
+    grid-template-columns:1fr
+  }
+  .field.full{grid-column:auto}
+  .form-section-title{grid-column:auto}
+  .track-row{flex-direction:column}
+  .footer-grid{grid-template-columns:1fr}
+  .section-title h2{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+<div class="container">
+<span>📦 AR Logistics Pro — Customer Shipping Portal</span>
+<span class="right">☎ +91 XXXXX XXXXX &nbsp; | &nbsp; ✉ info@arlogistics.com</span>
+</div>
+</div>
+
+<!-- NAVIGATION -->
+<header>
+<div class="container navbar">
+
+<a href="#home" class="logo">
+<div class="logo-icon">AR</div>
+AR <span>Logistics</span>
+</a>
+
+<button class="menu" id="menuBtn">☰</button>
+
+<nav id="nav">
+
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#booking">Book</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#tracking">Track</a>
+<a href="#support">Support</a>
+
+<button class="login-btn" id="loginBtn">
+Customer Login
+</button>
+
+<button class="logout-btn hidden" id="logoutBtn">
+Logout
+</button>
+
+</nav>
+
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+
+<div class="badge">
+🚚 Complete Logistics Management
+</div>
+
+<h1>
+Move Smarter.<br>
+<span>Deliver Better.</span>
+</h1>
+
+<p>
+Book shipments, schedule pickups, manage packages,
+track AWB numbers, view invoices, check delivery status
+and manage your logistics from one customer portal.
+</p>
+
+<div class="actions">
+
+<a href="#booking" class="btn primary">
+📦 Create Shipment
+</a>
+
+<button class="btn light" id="heroLogin">
+👤 Customer Login
+</button>
+
+<a href="#tracking" class="btn light">
+🔎 Track Shipment
+</a>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+<div class="container">
+
+<div class="stats-grid">
+
+<div class="stat">
+<strong id="statTotal">0</strong>
+Orders
+</div>
+
+<div class="stat">
+<strong id="statActive">0</strong>
+Active
+</div>
+
+<div class="stat">
+<strong id="statDelivered">0</strong>
+Delivered
+</div>
+
+<div class="stat">
+<strong id="statReturns">0</strong>
+Returns
+</div>
+
+<div class="stat">
+<strong>24/7</strong>
+Support
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">Our Services</div>
+
+<h2>
+Complete Logistics Solutions
+</h2>
+
+<p>
+Everything a customer needs to manage shipments from pickup to delivery.
+</p>
+
+</div>
+
+<div class="service-grid">
+
+<div class="service">
+<div class="service-icon">🚛</div>
+<h3>Road Transportation</h3>
+<p>Local, regional and long-distance freight movement.</p>
+</div>
+
+<div class="service">
+<div class="service-icon">📦</div>
+<h3>Parcel Delivery</h3>
+<p>Reliable door-to-door parcel delivery.</p>
+</div>
+
+<div class="service">
+<div class="service-icon">⚡</div>
+<h3>Express Delivery</h3>
+<p>Priority transportation for urgent shipments.</p>
+</div>
+
+<div class="service">
+<div class="service-icon">🏭</div>
+<h3>Warehousing</h3>
+<p>Secure storage and inventory handling.</p>
+</div>
+
+<div class="service">
+<div class="service-icon">🔄</div>
+<h3>Reverse Logistics</h3>
+<p>Returns, exchanges and RTO management.</p>
+</div>
+
+<div class="service">
+<div class="service-icon">🏢</div>
+<h3>Business Logistics</h3>
+<p>Flexible shipping solutions for businesses.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="app-section" id="dashboard">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">Customer Portal</div>
+
+<h2>
+My Logistics Dashboard
+</h2>
+
+<p>
+Manage shipments, orders, addresses and tracking from one place.
+</p>
+
+</div>
+
+<div class="app-grid">
+
+<!-- SIDEBAR -->
+<aside class="panel">
+
+<div class="user-card">
+
+<div class="avatar" id="avatar">
+G
+</div>
+
+<strong id="sideName">
+Guest Customer
+</strong>
+
+<small id="sideEmail" style="display:block;color:#d0d5dd">
+Login to manage your account
+</small>
+
+</div>
+
+<div class="side-menu">
+
+<button class="active" onclick="showPanel('orders')">
+📊 Dashboard
+</button>
+
+<button onclick="goBooking()">
+➕ New Shipment
+</button>
+
+<button onclick="goTracking()">
+📍 Track Shipment
+</button>
+
+<button onclick="showPanel('addresses')">
+📍 Saved Addresses
+</button>
+
+<button onclick="showPanel('notifications')">
+🔔 Notifications
+</button>
+
+<button onclick="showPanel('profile')">
+👤 My Profile
+</button>
+
+</div>
+
+</aside>
+
+<!-- MAIN -->
+<div class="panel" id="mainPanel">
+
+<!-- ORDERS PANEL -->
+<div id="panel-orders">
+
+<div class="dashboard-head">
+
+<div>
+<h2 id="welcome">Welcome, Guest</h2>
+<p>Your shipment overview</p>
+</div>
+
+<button class="btn primary" onclick="goBooking()">
++ New Shipment
+</button>
+
+</div>
+
+<div class="mini-grid">
+
+<div class="mini">
+<small>Total Orders</small>
+<b id="totalOrders">0</b>
+</div>
+
+<div class="mini">
+<small>Booked</small>
+<b id="bookedOrders">0</b>
+</div>
+
+<div class="mini">
+<small>In Transit</small>
+<b id="transitOrders">0</b>
+</div>
+
+<div class="mini">
+<small>Delivered</small>
+<b id="deliveredOrders">0</b>
+</div>
+
+<div class="mini">
+<small>Returns</small>
+<b id="returnOrders">0</b>
+</div>
+
+</div>
+
+<div class="table-wrap">
+
+<table class="orders">
+
+<thead>
+<tr>
+<th>Order / AWB</th>
+<th>From</th>
+<th>To</th>
+<th>Package</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="ordersBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ADDRESS PANEL -->
+<div id="panel-addresses" class="hidden">
+
+<div class="dashboard-head">
+<div>
+<h2>Saved Addresses</h2>
+<p>Your frequently used pickup and delivery locations.</p>
+</div>
+<button class="btn primary" onclick="addAddress()">
++ Add Address
+</button>
+</div>
+
+<div class="address-list" id="addressList"></div>
+
+</div>
+
+<!-- NOTIFICATIONS -->
+<div id="panel-notifications" class="hidden">
+
+<div class="dashboard-head">
+<div>
+<h2>Notifications</h2>
+<p>Shipment and account notifications.</p>
+</div>
+</div>
+
+<div class="notification-list" id="notificationList">
+
+<div class="notification">
+<strong>📦 Welcome to AR Logistics</strong>
+<p>Your customer portal is ready.</p>
+</div>
+
+<div class="notification">
+<strong>🚚 Shipment updates</strong>
+<p>New booking status will appear here.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- PROFILE -->
+<div id="panel-profile" class="hidden">
+
+<div class="dashboard-head">
+<div>
+<h2>My Profile</h2>
+<p>Manage your customer information.</p>
+</div>
+</div>
+
+<form id="profileForm" class="form-grid">
+
+<div class="field">
+<label>Full Name</label>
+<input id="profileName" required>
+</div>
+
+<div class="field">
+<label>Email</label>
+<input id="profileEmail" type="email" required>
+</div>
+
+<div class="field">
+<label>Phone</label>
+<input id="profilePhone" placeholder="+91 XXXXX XXXXX">
+</div>
+
+<div class="field">
+<label>Company</label>
+<input id="profileCompany" placeholder="Company name">
+</div>
+
+<div class="field full">
+<button class="btn primary">
+Save Profile
+</button>
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">
+Shipment Booking
+</div>
+
+<h2>
+Create New Shipment
+</h2>
+
+<p>
+Enter pickup, delivery and package information.
+</p>
+
+</div>
+
+<div class="panel">
+
+<form id="bookingForm" class="form-grid">
+
+<div class="form-section-title">
+📍 Pickup Information
+</div>
+
+<div class="field">
+<label>Pickup / Order From *</label>
+<input id="fromAddress" required placeholder="Shop / warehouse / address">
+</div>
+
+<div class="field">
+<label>Pickup City *</label>
+<input id="fromCity" required placeholder="Delhi">
+</div>
+
+<div class="field">
+<label>Pickup Contact Name *</label>
+<input id="pickupContact" required>
+</div>
+
+<div class="field">
+<label>Pickup Phone *</label>
+<input id="pickupPhone" required placeholder="+91">
+</div>
+
+<div class="form-section-title">
+🎯 Delivery Information
+</div>
+
+<div class="field">
+<label>Delivery / Order To *</label>
+<input id="toAddress" required placeholder="Customer delivery address">
+</div>
+
+<div class="field">
+<label>Delivery City *</label>
+<input id="toCity" required placeholder="Jaipur">
+</div>
+
+<div class="field">
+<label>Receiver Name *</label>
+<input id="receiverName" required>
+</div>
+
+<div class="field">
+<label>Receiver Phone *</label>
+<input id="receiverPhone" required placeholder="+91">
+</div>
+
+<div class="form-section-title">
+📦 Package Information
+</div>
+
+<div class="field">
+<label>Item / Product *</label>
+<input id="item" required placeholder="Electronics / Documents / Clothing">
+</div>
+
+<div class="field">
+<label>Package Type</label>
+
+<select id="packageType">
+
+<option>Parcel</option>
+<option>Box</option>
+<option>Document</option>
+<option>Fragile</option>
+<option>Commercial Goods</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div class="field">
+<label>Quantity *</label>
+<input id="quantity" type="number" min="1" value="1" required>
+</div>
+
+<div class="field">
+<label>Weight (KG) *</label>
+<input id="weight" type="number" min="0.1" step="0.1" value="1" required>
+</div>
+
+<div class="field">
+<label>Length (CM)</label>
+<input id="length" type="number" value="20">
+</div>
+
+<div class="field">
+<label>Width (CM)</label>
+<input id="width" type="number" value="20">
+</div>
+
+<div class="field">
+<label>Height (CM)</label>
+<input id="height" type="number" value="20">
+</div>
+
+<div class="field">
+<label>Item Value (₹)</label>
+<input id="itemValue" type="number" min="0" value="1000">
+</div>
+
+<div class="form-section-title">
+🚚 Delivery & Payment
+</div>
+
+<div class="field">
+<label>Delivery Type</label>
+
+<select id="deliveryType">
+
+<option>Standard Delivery</option>
+<option>Express Delivery</option>
+<option>Same Day Delivery</option>
+
+</select>
+
+</div>
+
+<div class="field">
+<label>Payment Method</label>
+
+<select id="paymentMethod">
+
+<option>Cash on Delivery</option>
+<option>Prepaid</option>
+<option>Online Payment</option>
+<option>Business Credit</option>
+
+</select>
+
+</div>
+
+<div class="field">
+<label>Pickup Date</label>
+<input id="pickupDate" type="date">
+</div>
+
+<div class="field">
+<label>Expected Delivery Date</label>
+<input id="deliveryDate" type="date">
+</div>
+
+<div class="field full">
+<label>Special Instructions</label>
+<textarea id="instructions" placeholder="Fragile, call before delivery, etc."></textarea>
+</div>
+
+<div class="field full">
+
+<div class="quote-box">
+
+<div class="quote-grid">
+
+<div class="quote-item">
+<small>Base Freight</small>
+<strong id="quoteBase">₹0</strong>
+</div>
+
+<div class="quote-item">
+<small>Fuel / Handling</small>
+<strong id="quoteHandling">₹0</strong>
+</div>
+
+<div class="quote-item">
+<small>Tax</small>
+<strong id="quoteTax">₹0</strong>
+</div>
+
+<div class="quote-item">
+<small>Total Estimate</small>
+<strong id="quoteTotal">₹0</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="field full">
+
+<button class="btn primary" type="submit">
+🚚 Confirm Shipment & Generate AWB
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+</section>
+
+<!-- TRACKING -->
+<section class="tracking" id="tracking">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow" style="color:#ff995c">
+Shipment Tracking
+</div>
+
+<h2>
+Track Your Shipment
+</h2>
+
+<p>
+Enter your AR Logistics Order ID or AWB number.
+</p>
+
+</div>
+
+<div class="track-box">
+
+<div class="track-row">
+
+<input id="trackInput" placeholder="Example: AR-123456">
+
+<button class="btn primary" id="trackBtn">
+🔎 Track
+</button>
+
+</div>
+
+<div class="track-result" id="trackResult"></div>
+
+</div>
+
+</div>
+</section>
+
+<!-- EXTRA FEATURES -->
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">Customer Features</div>
+
+<h2>
+Everything In One Portal
+</h2>
+
+</div>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>🧾 Digital Invoices</h3>
+<p>View shipment charges and generate a printable invoice.</p>
+</div>
+
+<div class="feature-card">
+<h3>💰 Freight Estimate</h3>
+<p>Get an estimated shipping amount before confirming a booking.</p>
+</div>
+
+<div class="feature-card">
+<h3>🔄 Returns & RTO</h3>
+<p>Manage return shipments and failed delivery cases.</p>
+</div>
+
+<div class="feature-card">
+<h3>📅 Pickup Scheduling</h3>
+<p>Select a preferred pickup date for your shipment.</p>
+</div>
+
+<div class="feature-card">
+<h3>🔔 Notifications</h3>
+<p>Keep track of shipment and account updates.</p>
+</div>
+
+<div class="feature-card">
+<h3>🎫 Support Tickets</h3>
+<p>Contact AR Logistics support for shipment issues.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="app-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="eyebrow">Customer Support</div>
+
+<h2>
+Need Help?
+</h2>
+
+<p>
+Create a support ticket for your shipment.
+</p>
+
+</div>
+
+<div class="two-grid">
+
+<div class="panel">
+
+<h3 style="color:var(--dark);margin-bottom:15px">
+🎫 Create Support Ticket
+</h3>
+
+<form id="supportForm">
+
+<div class="field">
+<label>Order / AWB</label>
+<input id="supportOrder" placeholder="AR-123456">
+</div>
+
+<br>
+
+<div class="field">
+<label>Issue Type</label>
+
+<select id="issueType">
+<option>Delivery Delay</option>
+<option>Pickup Issue</option>
+<option>Damaged Package</option>
+<option>Wrong Delivery</option>
+<option>Payment Issue</option>
+<option>Other</option>
+</select>
+
+</div>
+
+<br>
+
+<div class="field">
+<label>Message</label>
+<textarea id="supportMessage" required placeholder="Describe your issue"></textarea>
+</div>
+
+<br>
+
+<button class="btn primary">
+Submit Ticket
+</button>
+
+</form>
+
+</div>
+
+<div class="panel">
+
+<h3 style="color:var(--dark);margin-bottom:15px">
+📞 Contact AR Logistics
+</h3>
+
+<p>☎ +91 XXXXX XXXXX</p>
+<p>✉ support@arlogistics.com</p>
+<p>🕐 Monday - Sunday, 24/7</p>
+
+<br>
+
+<h3 style="color:var(--dark)">
+Common Help
+</h3>
+
+<p>• Track shipment</p>
+<p>• Change delivery address</p>
+<p>• Report delivery issue</p>
+<p>• Request return</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="logo" style="color:#fff;margin-bottom:13px">
+
+<div class="logo-icon">AR</div>
+
+AR <span>Logistics</span>
+
+</div>
+
+<p>
+Professional logistics management for customers and businesses.
+</p>
+
+</div>
+
+<div>
+
+<h3>Customer</h3>
+
+<ul class="footer-links">
+<li><a href="#booking">Book Shipment</a></li>
+<li><a href="#dashboard">My Orders</a></li>
+<li><a href="#tracking">Track Shipment</a></li>
+<li><a href="#support">Support</a></li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Services</h3>
+
+<ul class="footer-links">
+<li>Road Transport</li>
+<li>Parcel Delivery</li>
+<li>Express Delivery</li>
+<li>Warehousing</li>
+<li>Reverse Logistics</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Contact</h3>
+
+<p>📍 India</p>
+<p>☎ +91 XXXXX XXXXX</p>
+<p>✉ info@arlogistics.com</p>
+
+</div>
+
+</div>
+
+<div class="copyright">
+© <span id="year"></span> AR Logistics. All Rights Reserved.
+</div>
+
+</div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+
+<div class="modal-box">
+
+<button class="close" id="closeLogin">×</button>
+
+<div class="eyebrow">
+Customer Access
+</div>
+
+<h2>Login / Register</h2>
+
+<p>
+Access your AR Logistics customer account.
+</p>
+
+<div class="demo">
+<strong>Demo Login</strong><br>
+Email: customer@arlogistics.com<br>
+Password: 123456
+</div>
+
+<form id="loginForm">
+
+<div class="field">
+<label>Email</label>
+<input id="loginEmail" type="email" required placeholder="customer@arlogistics.com">
+</div>
+
+<br>
+
+<div class="field">
+<label>Password</label>
+<input id="loginPassword" type="password" required placeholder="123456">
+</div>
+
+<br>
+
+<div class="field">
+<label>Your Name</label>
+<input id="loginName" placeholder="AR Customer">
+</div>
+
+<br>
+
+<button class="btn primary" style="width:100%">
+Login
+</button>
+
+</form>
+
+</div>
+</div>
+
+<!-- INVOICE MODAL -->
+<div class="modal" id="invoiceModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeInvoice()">×</button>
+
+<div id="invoiceContent"></div>
+
+<button class="btn primary" onclick="window.print()" style="margin-top:20px">
+🖨️ Print Invoice
+</button>
+
+</div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* =========================================================
+   AR LOGISTICS PRO - FRONTEND DATA
+========================================================= */
+
+let orders =
+JSON.parse(
+localStorage.getItem("AR_LOGISTICS_ORDERS") || "[]"
+);
+
+let addresses =
+JSON.parse(
+localStorage.getItem("AR_LOGISTICS_ADDRESSES") || "[]"
+);
+
+let user =
+JSON.parse(
+localStorage.getItem("AR_LOGISTICS_USER") || "null"
+);
+
+let tickets =
+JSON.parse(
+localStorage.getItem("AR_LOGISTICS_TICKETS") || "[]"
+);
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function $(id){
+return document.getElementById(id);
+}
+
+function toast(message){
+
+const box=$("toast");
+
+box.textContent=message;
+
+box.classList.add("show");
+
+setTimeout(()=>{
+box.classList.remove("show");
+},2800);
+
+}
+
+function esc(value){
+
+return String(value || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+function money(value){
+
+return "₹"+Number(value || 0).toLocaleString("en-IN",{
+maximumFractionDigits:0
+});
+
+}
+
+function saveOrders(){
+
+localStorage.setItem(
+"AR_LOGISTICS_ORDERS",
+JSON.stringify(orders)
+);
+
+}
+
+function saveAddresses(){
+
+localStorage.setItem(
+"AR_LOGISTICS_ADDRESSES",
+JSON.stringify(addresses)
+);
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+$("menuBtn").onclick=()=>{
+
+$("nav").classList.toggle("open");
+
+};
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function openLogin(){
+
+$("loginModal").classList.add("show");
+
+}
+
+function closeLogin(){
+
+$("loginModal").classList.remove("show");
+
+}
+
+$("loginBtn").onclick=openLogin;
+$("heroLogin").onclick=openLogin;
+$("closeLogin").onclick=closeLogin;
+
+
+$("loginForm").onsubmit=function(e){
+
+e.preventDefault();
+
+const email=$("loginEmail").value.trim();
+
+const password=$("loginPassword").value;
+
+const name=
+$("loginName").value.trim() ||
+"AR Customer";
+
+if(
+email==="customer@arlogistics.com" &&
+password==="123456"
+){
+
+user={
+name:name,
+email:email,
+phone:"",
+company:""
+};
+
+localStorage.setItem(
+"AR_LOGISTICS_USER",
+JSON.stringify(user)
+);
+
+closeLogin();
+
+updateUser();
+
+toast("Welcome to AR Logistics ✓");
+
+}else{
+
+toast(
+"Demo login: customer@arlogistics.com / 123456"
+);
+
+}
+
+};
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutBtn").onclick=function(){
+
+user=null;
+
+localStorage.removeItem(
+"AR_LOGISTICS_USER"
+);
+
+updateUser();
+
+toast("Logged out successfully.");
+
+};
+
+
+/* =========================================================
+   UPDATE USER
+========================================================= */
+
+function updateUser(){
+
+if(user){
+
+$("sideName").textContent=user.name;
+
+$("sideEmail").textContent=user.email;
+
+$("avatar").textContent=
+user.name.charAt(0).toUpperCase();
+
+$("welcome").textContent=
+"Welcome, "+user.name.split(" ")[0];
+
+$("loginBtn").classList.add("hidden");
+
+$("logoutBtn").classList.remove("hidden");
+
+$("profileName").value=user.name;
+
+$("profileEmail").value=user.email;
+
+$("profilePhone").value=user.phone || "";
+
+$("profileCompany").value=user.company || "";
+
+}else{
+
+$("sideName").textContent="Guest Customer";
+
+$("sideEmail").textContent="Login to manage your account";
+
+$("avatar").textContent="G";
+
+$("welcome").textContent="Welcome, Guest";
+
+$("loginBtn").classList.remove("hidden");
+
+$("logoutBtn").classList.add("hidden");
+
+}
+
+}
+
+
+/* =========================================================
+   PANEL NAVIGATION
+========================================================= */
+
+function showPanel(name){
+
+[
+"orders",
+"addresses",
+"notifications",
+"profile"
+].forEach(x=>{
+
+$("panel-"+x).classList.add("hidden");
+
+});
+
+$("panel-"+name).classList.remove("hidden");
+
+if(name==="addresses") renderAddresses();
+
+if(name==="orders") renderOrders();
+
+}
+
+function goBooking(){
+
+$("booking").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function goTracking(){
+
+$("tracking").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================================
+   PRICE CALCULATOR
+========================================================= */
+
+function calculateQuote(){
+
+const weight=
+Number($("weight").value) || 1;
+
+const quantity=
+Number($("quantity").value) || 1;
+
+const type=
+$("deliveryType").value;
+
+let base=
+150 + (weight*35) + (quantity*15);
+
+if(type==="Express Delivery"){
+base*=1.35;
+}
+
+if(type==="Same Day Delivery"){
+base*=1.7;
+}
+
+const handling=
+Math.max(50,base*.08);
+
+const tax=
+(base+handling)*.18;
+
+const total=
+base+handling+tax;
+
+$("quoteBase").textContent=
+money(base);
+
+$("quoteHandling").textContent=
+money(handling);
+
+$("quoteTax").textContent=
+money(tax);
+
+$("quoteTotal").textContent=
+money(total);
+
+return Math.round(total);
+
+}
+
+[
+"weight",
+"quantity",
+"deliveryType"
+].forEach(id=>{
+
+$(id).addEventListener(
+"input",
+calculateQuote
+);
+
+$(id).addEventListener(
+"change",
+calculateQuote
+);
+
+});
+
+calculateQuote();
+
+
+/* =========================================================
+   CREATE SHIPMENT
+========================================================= */
+
+$("bookingForm").onsubmit=function(e){
+
+e.preventDefault();
+
+if(!user){
+
+openLogin();
+
+toast(
+"Please login before creating a shipment."
+);
+
+return;
+
+}
+
+const amount=calculateQuote();
+
+const id=
+"AR-"+Math.floor(
+100000+Math.random()*900000
+);
+
+const today=
+new Date().toLocaleDateString("en-IN");
+
+const order={
+
+id:id,
+
+date:today,
+
+customer:user.name,
+
+email:user.email,
+
+from:$("fromAddress").value,
+
+fromCity:$("fromCity").value,
+
+pickupContact:$("pickupContact").value,
+
+pickupPhone:$("pickupPhone").value,
+
+to:$("toAddress").value,
+
+toCity:$("toCity").value,
+
+receiverName:$("receiverName").value,
+
+receiverPhone:$("receiverPhone").value,
+
+item:$("item").value,
+
+packageType:$("packageType").value,
+
+quantity:$("quantity").value,
+
+weight:$("weight").value,
+
+length:$("length").value,
+
+width:$("width").value,
+
+height:$("height").value,
+
+itemValue:$("itemValue").value,
+
+deliveryType:$("deliveryType").value,
+
+payment:$("paymentMethod").value,
+
+pickupDate:$("pickupDate").value,
+
+deliveryDate:$("deliveryDate").value,
+
+instructions:$("instructions").value,
+
+amount:amount,
+
+status:"Booked",
+
+timeline:[
+
+{
+status:"Booked",
+date:today,
+note:"Shipment booking created."
+}
+
+]
+
+};
+
+orders.unshift(order);
+
+saveOrders();
+
+renderOrders();
+
+$("bookingForm").reset();
+
+calculateQuote();
+
+toast(
+"Shipment created successfully: "+id
+);
+
+setTimeout(()=>{
+
+$("dashboard").scrollIntoView({
+behavior:"smooth"
+});
+
+},300);
+
+};
+
+
+/* =========================================================
+   ORDER STATUS CLASS
+========================================================= */
+
+function statusClass(status){
+
+if(status==="Booked")return"s-booked";
+if(status==="Pickup Scheduled")return"s-pickup";
+if(status==="At Warehouse")return"s-warehouse";
+if(status==="In Transit")return"s-transit";
+if(status==="Out for Delivery")return"s-out";
+if(status==="Delivered")return"s-delivered";
+if(status==="Cancelled")return"s-cancelled";
+if(status==="Return / RTO")return"s-return";
+
+return"s-booked";
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
+function renderOrders(){
+
+const total=orders.length;
+
+const booked=
+orders.filter(o=>o.status==="Booked").length;
+
+const transit=
+orders.filter(o=>
+o.status==="In Transit" ||
+o.status==="Out for Delivery" ||
+o.status==="At Warehouse" ||
+o.status==="Pickup Scheduled"
+).length;
+
+const delivered=
+orders.filter(o=>o.status==="Delivered").length;
+
+const returns=
+orders.filter(o=>
+o.status==="Return / RTO"
+).length;
+
+
+$("statTotal").textContent=total;
+$("statActive").textContent=transit;
+$("statDelivered").textContent=delivered;
+$("statReturns").textContent=returns;
+
+$("totalOrders").textContent=total;
+$("bookedOrders").textContent=booked;
+$("transitOrders").textContent=transit;
+$("deliveredOrders").textContent=delivered;
+$("returnOrders").textContent=returns;
+
+
+if(!orders.length){
+
+$("ordersBody").innerHTML=`
+
+<tr>
+<td colspan="6"
+style="text-align:center;padding:30px;color:#667085">
+
+No shipments yet.<br>
+Create your first shipment above.
+
+</td>
+</tr>
+
+`;
+
+return;
+
+}
+
+
+$("ordersBody").innerHTML=
+orders.map(order=>`
+
+<tr>
+
+<td>
+
+<b>${esc(order.id)}</b>
+
+<br>
+
+<small>${esc(order.date)}</small>
+
+<br>
+
+<button
+class="btn outline"
+style="padding:5px 8px;margin-top:5px;font-size:11px"
+onclick="showInvoice('${order.id}')">
+
+Invoice
+
+</button>
+
+</td>
+
+<td>
+
+${esc(order.from)}
+
+<br>
+
+<small>${esc(order.fromCity)}</small>
+
+</td>
+
+<td>
+
+${esc(order.to)}
+
+<br>
+
+<small>${esc(order.toCity)}</small>
+
+</td>
+
+<td>
+
+${esc(order.item)}
+
+<br>
+
+<small>
+${esc(order.quantity)} ×
+${esc(order.weight)} KG
+</small>
+
+</td>
+
+<td>
+${money(order.amount)}
+</td>
+
+<td>
+
+<span class="status ${statusClass(order.status)}">
+
+${esc(order.status)}
+
+</span>
+
+<br>
+
+<button
+class="btn outline"
+style="padding:5px 7px;margin-top:5px;font-size:11px"
+onclick="trackOrder('${order.id}')">
+
+Track
+
+</button>
+
+</td>
+
+</tr>
+
+`).join("");
+
+}
+
+
+/* =========================================================
+   TRACKING
+========================================================= */
+
+function trackOrder(id){
+
+$("trackInput").value=id;
+
+goTracking();
+
+setTimeout(()=>{
+trackShipment();
+},300);
+
+}
+
+$("trackBtn").onclick=trackShipment;
+
+function trackShipment(){
+
+const id=
+$("trackInput").value
+.trim()
+.toUpperCase();
+
+const result=$("trackResult");
+
+result.style.display="block";
+
+const order=
+orders.find(o=>o.id===id);
+
+if(!order){
+
+result.innerHTML=`
+<strong>❌ Shipment Not Found</strong>
+<br><br>
+Please check your Order ID / AWB number.
+`;
+
+return;
+
+}
+
+const stages=[
+"Booked",
+"Pickup Scheduled",
+"At Warehouse",
+"In Transit",
+"Out for Delivery",
+"Delivered"
+];
+
+let currentIndex=
+stages.indexOf(order.status);
+
+if(currentIndex<0)currentIndex=0;
+
+let timeline="";
+
+stages.forEach((stage,index)=>{
+
+const active=
+index<=currentIndex;
+
+timeline+=`
+
+<div class="timeline-item">
+
+<div class="dot ${active?"active":""}"></div>
+
+<div>
+
+<strong>${stage}</strong>
+
+<small>
+${active?
+(index===currentIndex?
+"Current shipment status":
+"Completed"):
+"Pending"}
+</small>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+result.innerHTML=`
+
+<strong style="font-size:18px">
+${esc(order.id)}
+</strong>
+
+<br>
+
+Order From:
+<b>${esc(order.fromCity)}</b>
+
+→
+
+Order To:
+<b>${esc(order.toCity)}</b>
+
+<br>
+
+Item:
+<b>${esc(order.item)}</b>
+
+<br>
+
+Current Status:
+<span class="status ${statusClass(order.status)}">
+${esc(order.status)}
+</span>
+
+<div class="timeline">
+
+${timeline}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   ADD ADDRESS
+========================================================= */
+
+function addAddress(){
+
+if(!user){
+
+openLogin();
+
+return;
+
+}
+
+const label=
+prompt(
+"Address name (Home / Office / Warehouse):"
+);
+
+if(!label)return;
+
+const address=
+prompt("Enter complete address:");
+
+if(!address)return;
+
+addresses.push({
+
+label:label,
+
+address:address,
+
+city:""
+
+});
+
+saveAddresses();
+
+renderAddresses();
+
+toast("Address saved.");
+
+}
+
+
+function renderAddresses(){
+
+if(!addresses.length){
+
+$("addressList").innerHTML=`
+
+<div class="address">
+
+<strong>No saved addresses</strong>
+
+<p>
+Add your frequently used pickup or delivery addresses.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+$("addressList").innerHTML=
+addresses.map((a,index)=>`
+
+<div class="address">
+
+<strong>
+📍 ${esc(a.label)}
+</strong>
+
+<p>
+${esc(a.address)}
+</p>
+
+<button
+class="btn outline"
+style="padding:6px 9px;font-size:11px"
+onclick="deleteAddress(${index})">
+
+Delete
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+function deleteAddress(index){
+
+addresses.splice(index,1);
+
+saveAddresses();
+
+renderAddresses();
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+$("profileForm").onsubmit=function(e){
+
+e.preventDefault();
+
+if(!user){
+
+openLogin();
+
+return;
+
+}
+
+user.name=$("profileName").value;
+user.email=$("profileEmail").value;
+user.phone=$("profilePhone").value;
+user.company=$("profileCompany").value;
+
+localStorage.setItem(
+"AR_LOGISTICS_USER",
+JSON.stringify(user)
+);
+
+updateUser();
+
+toast("Profile updated ✓");
+
+};
+
+
+/* =========================================================
+   SUPPORT
+========================================================= */
+
+$("supportForm").onsubmit=function(e){
+
+e.preventDefault();
+
+if(!user){
+
+openLogin();
+
+toast("Please login first.");
+
+return;
+
+}
+
+const ticket={
+
+id:
+"TKT-"+Math.floor(
+10000+Math.random()*90000
+),
+
+order:$("supportOrder").value,
+
+type:$("issueType").value,
+
+message:$("supportMessage").value,
+
+date:
+new Date().toLocaleDateString("en-IN"),
+
+status:"Open"
+
+};
+
+tickets.unshift(ticket);
+
+localStorage.setItem(
+"AR_LOGISTICS_TICKETS",
+JSON.stringify(tickets)
+);
+
+$("supportForm").reset();
+
+toast(
+"Support ticket created: "+ticket.id
+);
+
+};
+
+
+/* =========================================================
+   INVOICE
+========================================================= */
+
+function showInvoice(id){
+
+const order=
+orders.find(o=>o.id===id);
+
+if(!order)return;
+
+$("invoiceContent").innerHTML=`
+
+<div style="border-bottom:1px solid #e4e7ec;padding-bottom:15px">
+
+<div class="logo">
+
+<div class="logo-icon">AR</div>
+
+AR <span>Logistics</span>
+
+</div>
+
+<h2 style="margin-top:15px;color:#101828">
+Shipment Invoice
+</h2>
+
+</div>
+
+<div style="margin-top:20px">
+
+<p>
+<strong>Invoice / AWB:</strong>
+${esc(order.id)}
+</p>
+
+<p>
+<strong>Date:</strong>
+${esc(order.date)}
+</p>
+
+<p>
+<strong>Customer:</strong>
+${esc(order.customer)}
+</p>
+
+<p>
+<strong>Payment:</strong>
+${esc(order.payment)}
+</p>
+
+<hr style="margin:18px 0;border:0;border-top:1px solid #e4e7ec">
+
+<p>
+<strong>From:</strong>
+${esc(order.from)},
+${esc(order.fromCity)}
+</p>
+
+<p>
+<strong>To:</strong>
+${esc(order.to)},
+${esc(order.toCity)}
+</p>
+
+<p>
+<strong>Item:</strong>
+${esc(order.item)}
+</p>
+
+<p>
+<strong>Quantity:</strong>
+${esc(order.quantity)}
+</p>
+
+<p>
+<strong>Weight:</strong>
+${esc(order.weight)} KG
+</p>
+
+<hr style="margin:18px 0;border:0;border-top:1px solid #e4e7ec">
+
+<h2 style="color:#ff6b00">
+Total: ${money(order.amount)}
+</h2>
+
+<p style="margin-top:15px;color:#667085">
+Thank you for choosing AR Logistics.
+</p>
+
+</div>
+
+`;
+
+$("invoiceModal").classList.add("show");
+
+}
+
+function closeInvoice(){
+
+$("invoiceModal").classList.remove("show");
+
+}
+
+
+/* =========================================================
+   DEMO STATUS BUTTONS
+   For frontend testing only
+========================================================= */
+
+function advanceDemoStatus(id){
+
+const order=orders.find(o=>o.id===id);
+
+if(!order)return;
+
+const stages=[
+"Booked",
+"Pickup Scheduled",
+"At Warehouse",
+"In Transit",
+"Out for Delivery",
+"Delivered"
+];
+
+let index=
+stages.indexOf(order.status);
+
+if(index<stages.length-1){
+
+order.status=stages[index+1];
+
+}
+
+saveOrders();
+
+renderOrders();
+
+}
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+$("year").textContent=
+new Date().getFullYear();
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+updateUser();
+
+renderOrders();
+
+renderAddresses();
+
+</script>
+
+</body>
+</html>
